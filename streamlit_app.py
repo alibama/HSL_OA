@@ -150,6 +150,7 @@ order by ?parentOrgLabel
 '''
 r = requests.get(wikiurl, params = {'format': 'json', 'query': wikiquery})
 wikidata = r.json()
-st.write(wikidata)
+wikidf = pd.read_json(wikidata)
+st.write(wikidf)
 #st.write("This is testing the fuzzywuzzy package to begin aggregating departments")
 #st.write(process.extract(user_input, dfdata['aff'].to_list(), limit = 10))
