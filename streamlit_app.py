@@ -17,7 +17,6 @@ import pandas as pd
 import fuzzywuzzy
 from fuzzywuzzy import fuzz
 from fuzzywuzzy import process
-from SPARQLWrapper import SPARQLWrapper, JSON
 #import pandas_profiling
 #@st.cache
 
@@ -131,25 +130,5 @@ st.subheader('EDA reports provide a simple & low-code overview of data')
 
 if __name__ == '__main__':
 	main()
-st.write("This is testing the fuzzywuzzy package to begin aggregating departments")
-st.write(process.extract(user_input, dfdata['aff'].to_list(), limit = 10))
-
-sparql = SPARQLWrapper("https://query.wikidata.org/sparql")
-
-# From https://www.wikidata.org/wiki/Wikidata:SPARQL_query_service/queries/examples#Cats
-sparql.setQuery("""
-SELECT ?part ?partLabel ?parentOrg ?parentOrgLabel
-WHERE 
-{
-  {?part wdt:P361+ wd:Q213439.}
-  union
-  {?part wdt:P361/wdt:P749 wd:Q213439.}
-  ?part wdt:P361 ?parentOrg.
-  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". } # Helps get the label in your language, if not, then en language
-}
-order by ?parentOrgLabel
-""")
-sparql.setReturnFormat(JSON)
-results = sparql.query().convert()
-results_df = pd.io.json.json_normalize(results['results']['bindings'])
-results_df[['item.value', 'itemLabel.value']].head()
+#st.write("This is testing the fuzzywuzzy package to begin aggregating departments")
+#st.write(process.extract(user_input, dfdata['aff'].to_list(), limit = 10))
