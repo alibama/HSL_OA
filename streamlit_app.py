@@ -130,5 +130,26 @@ st.subheader('EDA reports provide a simple & low-code overview of data')
 
 if __name__ == '__main__':
 	main()
+	
+#https://stackoverflow.com/questions/55961615/how-to-integrate-wikidata-query-in-python
+#https://query.wikidata.org/#SELECT%20%3Fpart%20%3FpartLabel%20%3FparentOrg%20%3FparentOrgLabel%0AWHERE%20%0A%7B%0A%20%20%7B%3Fpart%20wdt%3AP361%2B%20wd%3AQ213439.%7D%0A%20%20union%0A%20%20%7B%3Fpart%20wdt%3AP361%2Fwdt%3AP749%20wd%3AQ213439.%7D%0A%20%20%3Fpart%20wdt%3AP361%20%3FparentOrg.%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22%5BAUTO_LANGUAGE%5D%2Cen%22.%20%7D%20%23%20Helps%20get%20the%20label%20in%20your%20language%2C%20if%20not%2C%20then%20en%20language%0A%7D%0Aorder%20by%20%3FparentOrgLabel
+
+
+wikiurl = 'https://query.wikidata.org/sparql'
+wikiquery = '''
+SELECT ?part ?partLabel ?parentOrg ?parentOrgLabel
+WHERE 
+{
+  {?part wdt:P361+ wd:Q213439.}
+  union
+  {?part wdt:P361/wdt:P749 wd:Q213439.}
+  ?part wdt:P361 ?parentOrg.
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". } # Helps get the label in your language, if not, then en language
+}
+order by ?parentOrgLabel
+'''
+r = requests.get(wikiurl, params = {'format': 'json', 'query': wikiquery})
+wikidata = r.json()
+st.write(wikidata)
 #st.write("This is testing the fuzzywuzzy package to begin aggregating departments")
 #st.write(process.extract(user_input, dfdata['aff'].to_list(), limit = 10))
