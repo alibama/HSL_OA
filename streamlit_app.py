@@ -17,6 +17,9 @@ import pandas as pd
 import fuzzywuzzy
 from fuzzywuzzy import fuzz
 from fuzzywuzzy import process
+from pandas import json_normalize 
+
+
 #import pandas_profiling
 #@st.cache
 
@@ -150,7 +153,8 @@ order by ?parentOrgLabel
 '''
 r = requests.get(wikiurl, params = {'format': 'json', 'query': wikiquery})
 wikidata = r.json()
-#wikidf = pd.read_json(r)
-st.write(wikidata)
+#wikidf = pd.read_json(wikidata)
+wikidf = json_normalize(wikidata)
+st.write(wikidf)
 #st.write("This is testing the fuzzywuzzy package to begin aggregating departments")
 #st.write(process.extract(user_input, dfdata['aff'].to_list(), limit = 10))
