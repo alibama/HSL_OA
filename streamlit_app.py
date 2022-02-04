@@ -154,10 +154,9 @@ order by ?parentOrgLabel
 """
 query_result = mkwikidata.run_query(query, params={ })
 
-
 wikidata = [{"label" : x["partLabel"]["value"], "part" : int(x["part"]["value"])} for x in query_result["results"]["bindings"]]
-st.write(pd.DataFrame(wikidata).set_index("label"))
-
+blar= pd.DataFrame(wikidata).set_index("label")
+st.write(blar)
 # wikiurl = 'https://query.wikidata.org/sparql'
 # wikiquery = '''
 
