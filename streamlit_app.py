@@ -45,7 +45,23 @@ st.markdown('In this app, we are using content pulled from [EuropePMC](https://e
 #	submitted1 = st.form_submit_button(label = 'Filter')
 
 
+query = """
+SELECT ?part ?partLabel ?parentOrg ?parentOrgLabel
+WHERE 
+{
+  {?part wdt:P361+ wd:Q213439.}
+  union
+  {?part wdt:P361/wdt:P749 wd:Q213439.}
+  ?part wdt:P361 ?parentOrg.
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". } # Helps get the label in your language, if not, then en language
+}
+order by ?parentOrgLabel
+"""
+query_result = mkwikidata.run_query(query, params={ })
 
+wikidata = [{"label" : x["partLabel"]["value"], "part" : x["part"]["value"]} for x in query_result["results"]["bindings"]]
+wikidf= pd.DataFrame(wikidata).set_index("label")
+#st.write(blar)
 
 
 @st.cache(suppress_st_warning=True)
@@ -88,8 +104,15 @@ dfdata=bigask()
 
 #dfdata= dfdata[dfdata['oa'] == choice] 
 #df=pd.DataFrame.from_dict(rslt)        
+list1 = dfdata['aff'].tolist()
+list2 = wikidf['label'].tolist()
+threshold = 80
 
-
+for i in list1:
+    mat1.append(process.extract(i, list2, limit=1))
+dfdata['matches'] = mat1
+  
+st.write(dfdata)
 
 
 #openFilter = sorted(df['aff'].drop_duplicates()) # select the open access values 
@@ -140,23 +163,7 @@ if __name__ == '__main__':
 
 
 
-query = """
-SELECT ?part ?partLabel ?parentOrg ?parentOrgLabel
-WHERE 
-{
-  {?part wdt:P361+ wd:Q213439.}
-  union
-  {?part wdt:P361/wdt:P749 wd:Q213439.}
-  ?part wdt:P361 ?parentOrg.
-  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". } # Helps get the label in your language, if not, then en language
-}
-order by ?parentOrgLabel
-"""
-query_result = mkwikidata.run_query(query, params={ })
 
-wikidata = [{"label" : x["partLabel"]["value"], "part" : x["part"]["value"]} for x in query_result["results"]["bindings"]]
-blar= pd.DataFrame(wikidata).set_index("label")
-st.write(blar)
 # wikiurl = 'https://query.wikidata.org/sparql'
 # wikiquery = '''
 
