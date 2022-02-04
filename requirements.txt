@@ -6,3 +6,4 @@ altair
 sweetviz
 fuzzywuzzy
 sparqlwrapper
+mkwikidata
