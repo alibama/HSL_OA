@@ -149,8 +149,8 @@ WHERE
 order by ?parentOrgLabel
 '''
 r = requests.get(wikiurl, params = {'format': 'json', 'query': wikiquery})
-#wikidata = r.json()
-wikidf = pd.read_json(r)
-st.write(wikidf)
+wikidata = r.json()
+#wikidf = pd.read_json(r)
+st.write(wikidata)
 #st.write("This is testing the fuzzywuzzy package to begin aggregating departments")
 #st.write(process.extract(user_input, dfdata['aff'].to_list(), limit = 10))
