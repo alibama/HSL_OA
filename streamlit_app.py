@@ -61,6 +61,7 @@ query_result = mkwikidata.run_query(query, params={ })
 
 wikidata = [{"label" : x["partLabel"]["value"], "part" : x["part"]["value"]} for x in query_result["results"]["bindings"]]
 wikidf= pd.DataFrame(wikidata).set_index("label")
+wikidf.index.name="label"
 st.write(wikidf)
 
 
