@@ -60,7 +60,7 @@ order by ?parentOrgLabel
 query_result = mkwikidata.run_query(query, params={ })
 
 wikidata = [{"part" : x["part"]["value"], "label" : x["partLabel"]["value"]} for x in query_result["results"]["bindings"]]
-wikidf= pd.DataFrame(wikidata).set_index("label")
+wikidf= pd.DataFrame(wikidata).set_index("part")
 wikidf.index.name="part"
 st.write(wikidf)
 
