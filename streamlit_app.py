@@ -104,15 +104,15 @@ dfdata=bigask()
 
 #dfdata= dfdata[dfdata['oa'] == choice] 
 #df=pd.DataFrame.from_dict(rslt)        
-list1 = dfdata['aff'].tolist()
-list2 = wikidf['label'].tolist()
-threshold = 80
+# list1 = dfdata['aff'].tolist()
+# list2 = wikidf['label'].tolist()
+# threshold = 80
 
-for i in list1:
-    mat1.append(process.extract(i, list2, limit=1))
-dfdata['matches'] = mat1
+# for i in list1:
+#     mat1.append(process.extract(i, list2, limit=1))
+# dfdata['matches'] = mat1
   
-st.write(dfdata)
+# st.write(dfdata)
 
 
 #openFilter = sorted(df['aff'].drop_duplicates()) # select the open access values 
