@@ -102,8 +102,9 @@ def bigask ():
 
 dfdata=bigask()
 #dfdata2=bigask2()
-
-
+#https://stackoverflow.com/questions/43727583/re-sub-erroring-with-expected-string-or-bytes-like-object
+dfdata['aff']=dfdata['aff'].apply(str)
+wikidf['label']=wikidf['label'].apply(str)
 #dfdata= dfdata[dfdata['oa'] == choice] 
 #df=pd.DataFrame.from_dict(rslt)        
 list1 = dfdata['aff'].tolist()
