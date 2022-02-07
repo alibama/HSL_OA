@@ -109,7 +109,7 @@ dfdata['aff']=dfdata['aff'].apply(str)
 dfdatahead = dfdata.head(100)
 wikidf['label']=wikidf['label'].apply(str)
 
-list1 = dfdata1['aff'].tolist()
+list1 = dfdatahead['aff'].tolist()
 list2 = wikidf['label'].tolist()
 threshold = 80
 
