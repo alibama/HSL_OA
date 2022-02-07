@@ -55,13 +55,14 @@ WHERE
   ?part wdt:P361 ?parentOrg.
   SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". } # Helps get the label in your language, if not, then en language
 }
-order by ?parentOrgLabel
+order by ?part
 """
 query_result = mkwikidata.run_query(query, params={ })
 
 wikidata = [{"label" : x["partLabel"]["value"], "part" : x["part"]["value"]} for x in query_result["results"]["bindings"]]
 wikidf= pd.DataFrame(wikidata).set_index("label")
-wikidf.columns = ['dept','id']
+
+wikidf.set_axis(['dept', 'id'], axis=1)
 st.write(wikidf)
 
 
