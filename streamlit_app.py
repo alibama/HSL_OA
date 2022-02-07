@@ -63,7 +63,7 @@ wikidata = [{"label" : x["partLabel"]["value"], "part" : x["part"]["value"]} for
 wikidf= pd.DataFrame(wikidata).set_index("label")
 wikidf.reset_index(inplace=True)
 wikidf = wikidf.rename(columns = {'index':'dept'})
-st.write(wikidf)
+#st.write(wikidf)
 
 
 @st.cache(suppress_st_warning=True)
@@ -109,7 +109,7 @@ dfdata=bigask()
 list1 = dfdata['aff'].tolist()
 list2 = wikidf['label'].tolist()
 threshold = 60
-
+mat1 = []
 for i in list1:
     mat1.append(process.extract(i, list2, limit=1))
 dfdata['matches'] = mat1
