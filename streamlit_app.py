@@ -103,19 +103,20 @@ def bigask ():
 dfdata=bigask()
 #dfdata2=bigask2()
 #https://stackoverflow.com/questions/43727583/re-sub-erroring-with-expected-string-or-bytes-like-object
-dfdata['aff']=dfdata['aff'].apply(str)
+dfdata1 = dfdata.head(100)
+dfdata1['aff']=dfdata1['aff'].apply(str)
 wikidf['label']=wikidf['label'].apply(str)
 #dfdata= dfdata[dfdata['oa'] == choice] 
 #df=pd.DataFrame.from_dict(rslt)        
-list1 = dfdata['aff'].tolist()
+list1 = dfdata1['aff'].tolist()
 list2 = wikidf['label'].tolist()
-threshold = 60
+threshold = 80
 mat1 = []
 for i in list1:
     mat1.append(process.extract(i, list2, limit=1))
-dfdata['matches'] = mat1
+dfdata1['matches'] = mat1
   
-st.write(dfdata)
+st.write(dfdata1)
 
 
 #openFilter = sorted(df['aff'].drop_duplicates()) # select the open access values 
