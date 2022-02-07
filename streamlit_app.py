@@ -61,8 +61,8 @@ query_result = mkwikidata.run_query(query, params={ })
 
 wikidata = [{"label" : x["partLabel"]["value"], "part" : x["part"]["value"]} for x in query_result["results"]["bindings"]]
 wikidf= pd.DataFrame(wikidata).set_index("label")
-
-wikidf.set_axis(['dept', 'id'], axis=1)
+wikidf.reset_index(inplace=True)
+wikidf = wikidf.rename(columns = {'index':'dept'})
 st.write(wikidf)
 
 
