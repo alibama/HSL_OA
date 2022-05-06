@@ -45,24 +45,24 @@ st.markdown('In this app, we are using content pulled from [EuropePMC](https://e
 #	submitted1 = st.form_submit_button(label = 'Filter')
 
 
-query = """
-SELECT ?part ?partLabel ?parentOrg ?parentOrgLabel
-WHERE 
-{
-  {?part wdt:P361+ wd:Q213439.}
-  union
-  {?part wdt:P361/wdt:P749 wd:Q213439.}
-  ?part wdt:P361 ?parentOrg.
-  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". } # Helps get the label in your language, if not, then en language
-}
-order by ?part
-"""
-query_result = mkwikidata.run_query(query, params={ })
+# query = """
+# SELECT ?part ?partLabel ?parentOrg ?parentOrgLabel
+# WHERE 
+# {
+#   {?part wdt:P361+ wd:Q213439.}
+#   union
+#   {?part wdt:P361/wdt:P749 wd:Q213439.}
+#   ?part wdt:P361 ?parentOrg.
+#   SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". } # Helps get the label in your language, if not, then en language
+# }
+# order by ?part
+# """
+# query_result = mkwikidata.run_query(query, params={ })
 
-wikidata = [{"label" : x["partLabel"]["value"], "part" : x["part"]["value"]} for x in query_result["results"]["bindings"]]
-wikidf= pd.DataFrame(wikidata).set_index("label")
-wikidf.reset_index(inplace=True)
-wikidf = wikidf.rename(columns = {'index':'dept'})
+# wikidata = [{"label" : x["partLabel"]["value"], "part" : x["part"]["value"]} for x in query_result["results"]["bindings"]]
+# wikidf= pd.DataFrame(wikidata).set_index("label")
+# wikidf.reset_index(inplace=True)
+# wikidf = wikidf.rename(columns = {'index':'dept'})
 #st.write(wikidf)
 
 
