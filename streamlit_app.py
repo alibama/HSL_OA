@@ -63,8 +63,10 @@ wikidata = [{"label" : x["partLabel"]["value"], "part" : x["part"]["value"]} for
 wikidf= pd.DataFrame(wikidata).set_index("label")
 wikidf.reset_index(inplace=True)
 wikidf = wikidf.rename(columns = {'index':'dept'})
-st.write(wikidf)
-#st.write(query_result)
+
+
+wiki_clear=wikidf.drop_duplicates(subset=label, keep='first', inplace=False, ignore_index=False)
+st.write(wiki_clear)
 
 # @st.cache(suppress_st_warning=True)
 # def bigask ():
