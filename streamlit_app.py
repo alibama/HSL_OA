@@ -65,7 +65,7 @@ wikidf.reset_index(inplace=True)
 wikidf = wikidf.rename(columns = {'index':'dept'})
 
 
-wiki_clear=wikidf.drop_duplicates(subset=label, keep='first', inplace=False, ignore_index=False)
+wiki_clear=wikidf.drop_duplicates(subset=None, keep='first', inplace=False, ignore_index=False)
 st.write(wiki_clear)
 
 # @st.cache(suppress_st_warning=True)
