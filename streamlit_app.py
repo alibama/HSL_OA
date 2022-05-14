@@ -107,7 +107,8 @@ dfdata=bigask()
 # #dfdata2=bigask2()
 # #https://stackoverflow.com/questions/43727583/re-sub-erroring-with-expected-string-or-bytes-like-object
 
-dfdata['aff']=dfdata['aff'].apply(str)
+dfdata['aff'] = dfdata['aff'].apply(str)
+dfdata['doi'] = dfdata['doi'].astype(str)  #pandas was calling this a mixed type column and it borked sweetviz
 
 dfdatahead = dfdata.head(100)
 wiki_clear['label']=wiki_clear['label'].apply(str)
