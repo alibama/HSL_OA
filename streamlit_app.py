@@ -103,25 +103,25 @@ def bigask ():
 # #st.sidebar.subheader("Select Option")
 # #choice = st.sidebar.selectbox("Full Text", menu)
 
-# dfdata=bigask()
+dfdata=bigask()
 # #dfdata2=bigask2()
 # #https://stackoverflow.com/questions/43727583/re-sub-erroring-with-expected-string-or-bytes-like-object
 
-# dfdata['aff']=dfdata['aff'].apply(str)
+dfdata['aff']=dfdata['aff'].apply(str)
 
-# dfdatahead = dfdata.head(100)
-# wikidf['label']=wikidf['label'].apply(str)
+dfdatahead = dfdata.head(100)
+wiki_clear['label']=wiki_clear['label'].apply(str)
 
-# list1 = dfdatahead['aff'].tolist()
-# list2 = wikidf['label'].tolist()
-# threshold = 80
+list1 = dfdatahead['aff'].tolist()
+list2 = wiki_clear['label'].tolist()
+threshold = 80
 
-# mat1 = []
-# for i in list1:
-#     mat1.append(process.extract(i, list2, limit=1))
-# dfdatahead['matches'] = mat1
+mat1 = []
+for i in list1:
+     mat1.append(process.extract(i, list2, limit=1))
+dfdatahead['matches'] = mat1
   
-# st.write(dfdatahead)
+st.write(dfdatahead)
 
 
 # #openFilter = sorted(df['aff'].drop_duplicates()) # select the open access values 
