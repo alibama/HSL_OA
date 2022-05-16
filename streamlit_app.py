@@ -123,9 +123,11 @@ threshold = 80
 mat1 = []
 for i in list1:
      mat1.append(process.extract(i, list2, limit=1))
-dfdatahead['matches'] = mat1
+
+df_results = pd.DataFrame(mat1, columns=['aff', 'probabily'])
+#dfdatahead['matches'] = mat1
   
-st.write(dfdatahead)
+st.write(df_results)
 
 
 # #openFilter = sorted(df['aff'].drop_duplicates()) # select the open access values 
