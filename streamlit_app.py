@@ -125,7 +125,7 @@ for i in list1:
      mat1.append(process.extract(i, list2, limit=1))
 dfdatahead['matches'] = mat1
   
-st.write(mat1)
+st.write(dfdatahead)
 
 
 # #openFilter = sorted(df['aff'].drop_duplicates()) # select the open access values 
