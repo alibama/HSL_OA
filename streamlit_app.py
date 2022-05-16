@@ -126,8 +126,8 @@ for i in list1:
 
 #df_results = pd.DataFrame(zip(mat1, label), columns=['aff', 'label'])
 #dfdatahead['matches'] = mat1
-df_results = pd.DataFrame(mat1)
-st.write(df_results)
+
+st.write(mat1)
 
 
 # #openFilter = sorted(df['aff'].drop_duplicates()) # select the open access values 
