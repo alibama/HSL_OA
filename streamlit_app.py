@@ -111,8 +111,9 @@ dfdata['aff'] = dfdata['aff'].apply(str)
 dfdata['doi'] = dfdata['doi'].astype(str)  #pandas was calling this a mixed type column and it borked sweetviz
 
 dfdatahead = dfdata.head(100)
-st.write(dfdatahead)
+
 wiki_clear['label']=wiki_clear['label'].apply(str)
+wiki_clear['label']=wiki_clear['label'].astype(str)
 
 list1 = dfdatahead['aff'].tolist()
 list2 = wiki_clear['label'].tolist()
