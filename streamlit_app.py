@@ -124,9 +124,9 @@ mat1 = []
 for i in list1:
      mat1.append(process.extract(i, list2, limit=1))
 
-df_results = pd.DataFrame(zip(mat1, label), columns=['aff', 'label'])
+#df_results = pd.DataFrame(zip(mat1, label), columns=['aff', 'label'])
 #dfdatahead['matches'] = mat1
-  
+df_results = pd.DataFrame(mat1)
 st.write(df_results)
 
 
