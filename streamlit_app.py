@@ -122,7 +122,7 @@ threshold = 80
 
 mat1 = []
 for i in list1:
-     mat1.append(process.extract(i, list2, limit=1))
+     mat1.append(process.extract(i, list2, limit=2))
 
 #df_results = pd.DataFrame(zip(mat1, label), columns=['aff', 'label'])
 #dfdatahead['matches'] = mat1
