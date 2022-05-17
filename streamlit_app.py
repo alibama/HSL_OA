@@ -49,9 +49,9 @@ query = """
 SELECT ?part ?partLabel ?parentOrg ?parentOrgLabel
 WHERE 
 {
-  {?part wdt:P361+ wd:Q213439.}
+  {?part wdt:P361+ wd:Q34433.}
   union
-  {?part wdt:P361/wdt:P749 wd:Q213439.}
+  {?part wdt:P361/wdt:P749 wd:Q34433.}
   ?part wdt:P361 ?parentOrg.
   SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". } # Helps get the label in your language, if not, then en language
 }
