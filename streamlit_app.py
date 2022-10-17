@@ -127,29 +127,27 @@ for i in list1:
 #df_results = pd.DataFrame(zip(mat1, label), columns=['aff', 'label'])
 #dfdatahead['matches'] = mat1
 
-st.write(mat1)
+#st.write(mat1)
+
+openFilter = sorted(df['aff'].drop_duplicates()) # select the open access values 
+open_Filter = st.sidebar.selectbox('Open Access?', openFilter) # render the streamlit widget on the sidebar of the page using the list we created above for the menu
+df2=df[df['openAccess'].str.contains(open_Filter)] # create a dataframe filtered below
+st.write(df2.sort_values(by='date'))
 
 
-# #openFilter = sorted(df['aff'].drop_duplicates()) # select the open access values 
-# #open_Filter = st.sidebar.selectbox('Open Access?', openFilter) # render the streamlit widget on the sidebar of the page using the list we created above for the menu
-# #df2=df[df['openAccess'].str.contains(open_Filter)] # create a dataframe filtered below
-# #st.write(df2.sort_values(by='date'))
-
-
-
-# @st.cache(suppress_st_warning=True)
-# def st_display_sweetviz(report_html,width=1000,height=500):
-# 	report_file = codecs.open(report_html,'r')
-# 	page = report_file.read()
-# 	components.html(page,width=width,height=height,scrolling=True)
+@st.cache(suppress_st_warning=True)
+def st_display_sweetviz(report_html,width=1000,height=500):
+ 	report_file = codecs.open(report_html,'r')
+ 	page = report_file.read()
+ 	components.html(page,width=width,height=height,scrolling=True)
 
 
   
-# def main():
-# 	if st.button("Generate Sweetviz Report"):
-# 		report = sv.analyze(dfdata)
-# 		report.show_html()
-# 		st_display_sweetviz("SWEETVIZ_REPORT.html")
+def main():
+ 	if st.button("Generate Sweetviz Report"):
+ 		report = sv.analyze(dfdata)
+ 		report.show_html()
+ 		st_display_sweetviz("SWEETVIZ_REPORT.html")
 
 # st.subheader('Streamlit makes interactive widgets with minimal code')
     
