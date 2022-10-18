@@ -60,9 +60,9 @@ def bigask ():
 
     
 
-#menu = ["Y", "N"]
-#st.sidebar.subheader("Select Option")
-#choice = st.sidebar.selectbox("Full Text", menu)
+menu = ["Y", "N"]
+st.sidebar.subheader("Select Option")
+choice = st.sidebar.selectbox("Full Text", menu)
 
 dfdata=bigask()
 #dfdata2=bigask2()
@@ -99,7 +99,7 @@ def main():
 st.subheader('Streamlit makes interactive widgets with minimal code')
     
 '''This is a simple slider built in streamlit that interacts with the imported data and provides the user with a textual and graphical output'''
-#citations = st.slider('Number of citations', 0, 100, 1)
+citations = st.slider('Number of citations', 0, 100, 1)
 citations = 0
 dfdata = dfdata[dfdata['cited'] >= citations] 
 dfdata['doi'] = dfdata['doi'].astype(str)  #pandas was calling this a mixed type column and it borked sweetviz
