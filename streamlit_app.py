@@ -39,7 +39,7 @@ def bigask ():
     nxt_mrk = '*' #next cursor mark
     while cr_mrk != nxt_mrk:              
         url = 'https://www.ebi.ac.uk/europepmc/webservices/rest/search?'
-        query = '(AFF:"University of Virginia") AND (FIRST_PDATE:[2017-01-01 TO 2020-12-31])'
+        query = '(AFF:"University of Virginia") AND (FIRST_PDATE:[2020-01-01 TO 2020-12-31])'
         params = {'query':query, 'resultType':'core', 'synonym':'TRUE','cursorMark':nxt_mrk,'pageSize':'1000','format':'json'}
         response = requests.get(url,params)
         rjson = response.json()
@@ -108,7 +108,7 @@ dfdata['aff'] = dfdata['aff'].astype(str)  #pandas was calling this a mixed type
 dfdata.to_csv('opendata.csv', index=False)
 st.write(dfdata)
         
-valLayer = alt.Chart(dfdata).mark_bar().encode(x='year',y='count(oa)',color='oa')
+valLayer = alt.Chart(dfdata).mark_bar().encode(x='month',y='count(oa)',color='oa')
 st.altair_chart(valLayer, use_container_width=True)
 st.subheader('EDA reports provide a simple & low-code overview of data')
 '''The questions one may ask are reasonably constrained by the data one has access to. Exploratory data analysis (EDA), aims to help establish the type and quality of the data to be processed and in our examples applies univariate graphical and textual reports to give data sets a first review.  In this case these reports are generated with only a few lines of code, and are thus especially useful for programmers to deliver to stakeholders early in the process'''
